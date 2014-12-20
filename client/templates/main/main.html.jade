@@ -1,8 +1,19 @@
 head
-  title Come
+  title Wishbar
 body
-  +hello
-  
-template(name='hello')
-  p Welcome to Meteor!
+  +main
+
+template(name='main')
+  .form
+    .input-group.margin-bottom-sm
+      | I wish this page
+      input(placeholder="had better graphics")
+      if showButton
+        button.input-group-addon.btn
+          i.fa.fa-paper-plane
+  .form-wrapper.invitation-form
+    | Delivered!
+    a(href="#" target="_blank") Get this widget
+    | for your site :)
+
 
