@@ -12,7 +12,9 @@ Template.main.events
       $('button').click()
 
   'click button': grab encapsulate (event, template) ->
+    share.Feedbacks.insert({feedback: $(template.find("input")).val(), user: "anonymous"})
     $('.input-group').fadeOut(400, fadeItIn)
+    cl(document.referrer)
 
 
 fadeItIn = ->

@@ -1,0 +1,1 @@
+share.feedbackHandle = Meteor.subscribe("feedbacks")
