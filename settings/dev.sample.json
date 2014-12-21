@@ -1,0 +1,17 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "apm": {
+    "appId": "__disabled_for_dev__",
+    "secret": "__disabled_for_dev__"
+  },
+  "public": {
+    "isDebug": true,
+    "ga": {
+      "account": ""
+    },
+    "mixpanel": {
+      "token": "",
+      "disabled": true
+    }
+  }
+}

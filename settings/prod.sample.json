@@ -1,0 +1,18 @@
+{
+  "baseUrl": "https://wishpool-widget.meteor.com",
+  "apm": {
+    "appId": "",
+    "secret": ""
+  },
+  "public": {
+    "version": "__VERSION__",
+    "isDebug": false,
+    "ga": {
+      "account": ""
+    },
+    "mixpanel": {
+      "token": "",
+      "disabled": false
+    }
+  }
+}
