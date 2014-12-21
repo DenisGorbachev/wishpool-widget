@@ -10,6 +10,8 @@ Template.main.events
     Session.set("showButton", $(template.find("input")).val().length > 5)
 
   'submit form': grab encapsulate (event, template) ->
+    if not Session.get("showButton")
+      return # simple validation
     share.Feedbacks.insert({feedback: $(template.find("input")).val(), user: "anonymous"})
     $('.input-group').fadeOut(400, fadeItIn)
 
