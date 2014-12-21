@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIRNAME=$(cd `dirname $0` && pwd)
+
+meteor deploy --settings settings/prod.json wishpool-widget.meteor.com
+$DIRNAME/logs
+notify-send -u normal -i face-glasses "Deployed to wishpool-widget.com"
