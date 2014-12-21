@@ -18,7 +18,7 @@ share.Feedbacks.before.insert (userId, feedback) ->
     updatedAt: now
     createdAt: now
   )
-  feedbackPreSave.call(@, userId, client)
+  feedbackPreSave.call(@, userId, feedback)
   true
 
 share.Feedbacks.before.update (userId, feedback, fieldNames, modifier, options) ->

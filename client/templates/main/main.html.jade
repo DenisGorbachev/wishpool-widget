@@ -4,12 +4,12 @@ body
   +main
 
 template(name='main')
-  .form
+  form.form
     .input-group.margin-bottom-sm
       | I wish this page
       input(placeholder="had better graphics")
       if showButton
-        button.input-group-addon.btn
+        button.input-group-addon.btn(type="submit")
           i.fa.fa-paper-plane
   .form-wrapper.invitation-form
     | Sent!
