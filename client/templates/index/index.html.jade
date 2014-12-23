@@ -7,10 +7,15 @@ template(name="index")
   style
     | {{style.css}}
   form
-    .input-group
-      if style.label
-        label.wishpool-label(for="text").input-group-addon {{style.label}}&nbsp;
-      input.wishpool-input.simplebox.form-control(id="text" name="text" autocomplete="off" placeholder="{{style.placeholder}}")
+    .fake.input-group(style="{{#if changed}}display: none;{{/if}}")
+      .placeholder.simplebox.form-control
+        span.invisible {{style.label}}
+        | {{style.placeholder}}
+      span.input-group-btn
+        button.btn.btn-success(type="submit")
+          i.fa.fa-check
+    .real.input-group
+      input.wishpool-input.simplebox.form-control(id="text" name="text" autocomplete="off" value="{{style.label}} ")
       span.input-group-btn
         button.btn.btn-success(type="submit")
           i.fa.fa-check

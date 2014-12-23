@@ -1,16 +1,16 @@
 Template.index.helpers
   style: ->
     Styles.findOne()
-  showButton: ->
-    Session.get("showButton")
+  changed: ->
+    Session.equals("changed", true)
 
 Template.index.rendered = ->
-  Session.set("showButton", false)
 
 Template.index.events
-  'keyup input': grab encapsulate (event, template) ->
-    Session.set("showButton", $(template.find("input")).val().length > 5)
-
+  'keydown input': (event, template) ->
+    Session.set("changed", true)
+  'keyup input': (event, template) ->
+    Session.set("changed", $(event.currentTarget).val() isnt Styles.findOne().label + " ")
   'submit form': grab encapsulate (event, template) ->
     if not Session.get("showButton")
       return # simple validation
