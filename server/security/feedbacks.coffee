@@ -1,3 +1,3 @@
-share.Feedbacks.allow
+Feedbacks.allow
   insert: share.securityRulesWrapper (feedback, userId) ->
     true
