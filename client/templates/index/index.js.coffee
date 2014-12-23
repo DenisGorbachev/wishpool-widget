@@ -1,11 +1,11 @@
-Template.main.helpers
+Template.index.helpers
   showButton: ->
     Session.get("showButton")
 
-Template.main.rendered = ->
+Template.index.rendered = ->
   Session.set("showButton", false)
 
-Template.main.events
+Template.index.events
   'keyup input': grab encapsulate (event, template) ->
     Session.set("showButton", $(template.find("input")).val().length > 5)
 
