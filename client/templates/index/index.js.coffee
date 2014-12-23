@@ -1,4 +1,6 @@
 Template.index.helpers
+  style: ->
+    Styles.findOne()
   showButton: ->
     Session.get("showButton")
 
