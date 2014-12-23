@@ -10,13 +10,15 @@ Template.index.events
   'keydown input': (event, template) ->
     Session.set("changed", true)
   'keyup input': (event, template) ->
-    Session.set("changed", $(event.currentTarget).val() isnt Styles.findOne().label + " ")
+    feedback = template.$("input").val()
+    defaultFeedback = Styles.findOne().label + " "
+    Session.set("changed", feedback isnt defaultFeedback)
   'submit form': grab encapsulate (event, template) ->
-    if not Session.get("showButton")
+    feedback = template.$("input").val()
+    defaultFeedback = Styles.findOne().label + " "
+    if feedback is defaultFeedback
       return # simple validation
-    Feedbacks.insert({feedback: $(template.find("input")).val(), user: "anonymous"})
-    $('.input-group').fadeOut(400, fadeItIn)
-
-
-fadeItIn = ->
-  $('.invitation-form').fadeIn()
+    Feedbacks.insert({feedback: feedback})
+    $('.input-group').fadeOut(400, ->
+      $('.success').fadeIn()
+    )

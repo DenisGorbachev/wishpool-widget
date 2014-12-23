@@ -7,10 +7,10 @@ template(name="index")
   style
     | {{style.css}}
   form
-    .fake.input-group(style="{{#if changed}}display: none;{{/if}}")
+    .fake.input-group
       .placeholder.simplebox.form-control
         span.invisible {{style.label}}
-        | {{style.placeholder}}
+        span(class="{{#if changed}}hidden{{/if}}") {{style.placeholder}}
       span.input-group-btn
         button.btn.btn-success(type="submit")
           i.fa.fa-check
@@ -19,7 +19,7 @@ template(name="index")
       span.input-group-btn
         button.btn.btn-success(type="submit")
           i.fa.fa-check
-  .form-wrapper.invitation-form(style="display: none;")
+  .success.simplebox.form-control(style="display: none;")
     | Sent!
     a(href="http://wishpool.meteor.com" target="_blank") Get this widget
     | for your site :)
