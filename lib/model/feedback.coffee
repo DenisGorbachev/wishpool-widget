@@ -1,6 +1,8 @@
 class Feedback
   constructor: (doc) ->
     _.extend(@, doc)
+  widget: ->
+    Widgets.findOne(@widgetId)
 
 share.Transformations.feedback = _.partial(share.transform, Feedback)
 
@@ -13,8 +15,23 @@ feedbackPreSave = (userId, changes) ->
 Feedbacks.before.insert (userId, feedback) ->
   feedback._id ||= Random.id()
   now = new Date()
+  widget = Widgets.findOne(feedback.widgetId)
+  if not widget
+    throw new Match.Error("Can't find widget #" + feedback.widgetId)
   _.defaults(feedback,
     text: ""
+    label: widget.label
+    placeholder: widget.placeholder
+    sourceUrl: ""
+    sourceUserName: ""
+    sourceUserEmail: ""
+    sourceUserAvatarUrl: ""
+    sourceUserId: ""
+    widgetId: null
+    domainId: null
+    isStarred: false
+    isArchived: false
+    accessibleBy: []
     updatedAt: now
     createdAt: now
   )

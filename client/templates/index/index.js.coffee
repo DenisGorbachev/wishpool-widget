@@ -18,7 +18,8 @@ Template.index.events
     defaultFeedback = Styles.findOne().label + " "
     if feedback is defaultFeedback
       return # simple validation
-    Feedbacks.insert({feedback: feedback})
+    sourceUrl = (if window.location != window.parent.location then document.referrer else document.location).toString()
+    Feedbacks.insert({text: text, widgetId: @_id, sourceUrl: sourceUrl})
     $('.input-group').fadeOut(400, ->
       $('.success').fadeIn()
     )

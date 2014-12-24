@@ -16,7 +16,7 @@ Domains.before.insert (userId, domain) ->
   _.defaults(domain,
     name: ""
     accessibleBy: []
-    friendUserIds: []
+    ownerId: userId
     updatedAt: now
     createdAt: now
   )
