@@ -27,11 +27,11 @@ Feedbacks.before.insert (userId, feedback) ->
     sourceUserEmail: ""
     sourceUserAvatarUrl: ""
     sourceUserId: ""
-    widgetId: null
+    widgetId: widget._id
     domainId: null
     isStarred: false
     isArchived: false
-    accessibleBy: []
+    accessibleBy: widget.accessibleBy
     updatedAt: now
     createdAt: now
   )
