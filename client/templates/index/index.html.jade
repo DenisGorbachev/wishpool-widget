@@ -5,23 +5,23 @@ body
 
 template(name="index")
   style
-    | {{style.css}}
+    | {{widget.css}}
   form
     .fake.input-group
       .placeholder.simplebox.form-control
-        span.invisible {{style.label}}
-        span(class="{{#if changed}}hidden{{/if}}") {{style.placeholder}}
+        span.invisible {{widget.label}}
+        span(class="{{#if changed}}hidden{{/if}}") {{widget.placeholder}}
       span.input-group-btn
         button.btn.btn-success(type="submit")
           i.fa.fa-check
     .real.input-group
-      input.wishpool-input.simplebox.form-control(id="text" name="text" autocomplete="off" value="{{style.label}} ")
+      input.wishpool-input.simplebox.form-control(id="text" name="text" autocomplete="off" value="{{widget.label}} ")
       span.input-group-btn
         button.btn.btn-success(type="submit")
           i.fa.fa-check
   .success.simplebox.form-control(style="display: none;")
     | Sent!
-    a(href="http://wishpool.meteor.com" target="_blank") Get this widget
+    a(href="{{Settings.public.masterUrl}}" target="_blank") Get this widget
     | for your site :)
 
 

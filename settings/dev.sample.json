@@ -1,11 +1,12 @@
 {
-  "baseUrl": "http://localhost:3000",
+  "baseUrl": "http://localhost:3002",
   "apm": {
     "appId": "__disabled_for_dev__",
     "secret": "__disabled_for_dev__"
   },
   "public": {
     "isDebug": true,
+    "masterUrl": "http://localhost:3000",
     "ga": {
       "account": ""
     },

@@ -2,8 +2,8 @@ UI.registerHelper("share", ->
   share
 )
 
-UI.registerHelper("Router", ->
-  Router
+UI.registerHelper("Settings", ->
+  Meteor.settings
 )
 
 UI.registerHelper("condition", (v1, operator, v2, options) ->

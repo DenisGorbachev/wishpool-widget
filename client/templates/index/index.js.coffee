@@ -1,6 +1,6 @@
 Template.index.helpers
-  style: ->
-    Styles.findOne()
+  widget: ->
+    Widgets.findOne()
   changed: ->
     Session.equals("changed", true)
 
@@ -11,15 +11,18 @@ Template.index.events
     Session.set("changed", true)
   'keyup input': (event, template) ->
     feedback = template.$("input").val()
-    defaultFeedback = Styles.findOne().label + " "
+    defaultFeedback = Widgets.findOne().label + " "
     Session.set("changed", feedback isnt defaultFeedback)
   'submit form': grab encapsulate (event, template) ->
-    feedback = template.$("input").val()
-    defaultFeedback = Styles.findOne().label + " "
-    if feedback is defaultFeedback
+    actualText = template.$("input").val()
+    defaultText = Widgets.findOne().label + " "
+    if actualText is defaultText
       return # simple validation
-    sourceUrl = (if window.location != window.parent.location then document.referrer else document.location).toString()
-    Feedbacks.insert({text: text, widgetId: @_id, sourceUrl: sourceUrl})
+    Feedbacks.insert(
+      text: actualText
+      parentUrl: Session.get("parentUrl")
+      sourceUrl: location.toString()
+    )
     $('.input-group').fadeOut(400, ->
       $('.success').fadeIn()
     )
