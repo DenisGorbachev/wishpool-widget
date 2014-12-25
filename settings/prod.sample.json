@@ -1,5 +1,5 @@
 {
-  "baseUrl": "https://wishpool-widget.meteor.com",
+  "baseUrl": "https://widget.wishpool.me",
   "apm": {
     "appId": "",
     "secret": ""
