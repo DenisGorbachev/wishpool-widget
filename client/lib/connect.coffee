@@ -9,7 +9,7 @@ for splinter in splinters # IE doesn't include forward slash in pathname, while 
   if splinter
     widgetId = splinter
 
-MasterConnection.subscribe("widgetById", widgetId)
+share.widgetSubscription = MasterConnection.subscribe("widgetById", widgetId)
 
 if not Session.get("parentUrl") # document.referrer changes after hot code reload; preserve original in Session
   Session.set("parentUrl", (if window.location != window.parent.location then document.referrer else document.location).toString())

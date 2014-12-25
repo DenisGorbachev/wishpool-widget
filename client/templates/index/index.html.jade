@@ -1,7 +1,8 @@
 head
   title Wishpool widget
 body
-  +index
+  if share.widgetSubscription.ready
+    +index
 
 template(name="index")
   style
