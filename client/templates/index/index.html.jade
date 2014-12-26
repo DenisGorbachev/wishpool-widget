@@ -14,12 +14,14 @@ template(name="index")
         span(class="{{#if changed}}hidden{{/if}}") {{widget.placeholder}}
       span.input-group-btn
         button.btn.btn-success(type="submit")
-          i.fa.fa-check
+          i(class="{{widget.buttonIcon}}")
+          | {{widget.buttonText}}
     .real.input-group
       input.wishpool-input.simplebox.form-control(id="text" name="text" autocomplete="off" value="{{widget.label}} ")
       span.input-group-btn
         button.btn.btn-success(type="submit")
-          i.fa.fa-check
+          i(class="{{widget.buttonIcon}}")
+          | {{widget.buttonText}}
   .success.simplebox.form-control(style="display: none;")
     | Sent!
     a(href="{{Settings.public.masterUrl}}" target="_blank") Get this widget
