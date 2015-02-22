@@ -1,0 +1,23 @@
+{
+  "servers": [
+    {
+      "host": "sp.technical",
+      "username": "chill",
+      "pem": "~/.ssh/id_rsa_for_mup"
+    }
+  ],
+  "setupMongo": false,
+  "setupNode": true,
+  "nodeVersion": "0.10.33",
+  "setupPhantom": false,
+  "appName": "wishbar-widget",
+  "app": "~/workspace/wishbar-widget",
+  "env": {
+    "ROOT_URL": "http://widget.wishpool.me",
+    "MONGO_URL": "mongodb://wishpool_me_mongo_user:rkpF1LAgMBAAGgFjAUBgkqhkiG9w0BCQIxBwwFU3BpcmUwDQ@c189.candidate.47.mongolayer.com:10189,c364.candidate.46.mongolayer.com:10364/wishbar?replicaSet=set-549959b09671279aa0005b83"
+  },
+  "ssl": {
+    "pem": "~/widget.wishpool.me.pem"
+  },
+  "deployCheckWaitTime": 15
+}
