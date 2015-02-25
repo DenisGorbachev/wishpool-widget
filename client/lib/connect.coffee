@@ -3,11 +3,9 @@
 @Widgets = new Meteor.Collection("widgets", MasterConnection)
 @Feedbacks = new Meteor.Collection("feedbacks", MasterConnection)
 
-widgetId = ""
 splinters = location.pathname.split("/")
-for splinter in splinters # IE doesn't include forward slash in pathname, while other browsers do
-  if splinter
-    widgetId = splinter
+splinters = _.compact(splinters) # IE doesn't include forward slash in pathname, while other browsers do
+widgetId = splinters[0]
 
 share.widgetSubscription = MasterConnection.subscribe("widgetById", widgetId)
 
