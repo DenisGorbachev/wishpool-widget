@@ -6,9 +6,9 @@ body
 template(name="index")
   style
     | {{widget.css}}
-  form
+  form.widget-form
     if share.widgetSubscription.ready
-      .fake.input-group
+      .fake.widget-group.input-group
         .placeholder.simplebox.form-control
           span.invisible {{widget.label}}
           span(class="{{#if changed}}hidden{{/if}}") {{widget.placeholder}}
@@ -16,7 +16,7 @@ template(name="index")
           button.btn.btn-success(type="submit")
             i(class="{{widget.buttonIcon}}")
             | {{widget.buttonText}}
-      .real.input-group
+      .real.widget-group.input-group
         input.wishpool-input.simplebox.form-control(id="text" name="text" autocomplete="off" value="{{widget.label}} ")
         span.input-group-btn
           button.btn.btn-success(type="submit")
@@ -25,11 +25,14 @@ template(name="index")
     else
       .placeholder.simplebox.form-control
         span Loading...
+  form.email-form
+    .ask-email.input-group(style="display: none;")
+      input.email-input.form-control(id="email" name="email" placeholder="Please leave your email here for us to answer:)")
+      span.input-group-btn
+        button.btn.btn-success.leave-email(type="submit")
+          i(class="{{widget.buttonIcon}}")
+          | {{widget.buttonText}}
   .success.simplebox.form-control(style="display: none;")
     | Sent!
-    a(href="{{Settings.public.masterUrl}}" target="_blank") Get this widget
-    | for your site :)
-
-
 
 
