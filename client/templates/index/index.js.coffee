@@ -1,6 +1,8 @@
 Template.index.helpers
   widget: ->
     Widgets.findOne()
+  currentUserTokenEmail: ->
+    TokenEmails.findOne({wishpoolOwnerToken: share.wishpoolOwnerToken})
   changed: ->
     Session.equals("changed", true)
 
@@ -20,8 +22,8 @@ Template.index.events
       return # simple validation
     parsedSourceUrl = URI.parse(location.toString())
     sourceParameters = URI.parseQuery(parsedSourceUrl.query)
-    cl "sourceParameters.userEmail = '"+sourceParameters.userEmail+"'"
-    if sourceParameters.userEmail isnt ""
+    tokenEmail = TokenEmails.findOne({wishpoolOwnerToken: share.wishpoolOwnerToken})?.email
+    if sourceParameters.userEmail isnt "" or tokenEmail
       Feedbacks.insert(
         text: actualText
         parentUrl: Session.get("parentUrl")
@@ -38,6 +40,7 @@ Template.index.events
       , 2000)
     else
       $('.input-group').fadeOut(400, ->
+        $('.ask-email').focus()
         $('.ask-email').fadeIn()
       )
 
@@ -47,7 +50,10 @@ Template.index.events
     email = template.$(".email-input").val()
     if email is "" or "@" not in email
       return
-
+    TokenEmails.insert(
+      email: email
+      wishpoolOwnerToken: share.wishpoolOwnerToken
+    )
     Feedbacks.insert(
       text: actualText
       parentUrl: Session.get("parentUrl")

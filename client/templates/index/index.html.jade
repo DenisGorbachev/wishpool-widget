@@ -27,7 +27,7 @@ template(name="index")
         span Loading...
   form.email-form
     .ask-email.input-group(style="display: none;")
-      input.email-input.form-control(id="email" name="email" placeholder="Please leave your email here for us to answer:)")
+      input.email-input.form-control(id="email" name="email" placeholder="Please leave your email here for us to answer:)" autofocus="autofocus")
       span.input-group-btn
         button.btn.btn-success.leave-email(type="submit")
           i(class="{{widget.buttonIcon}}")
