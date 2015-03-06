@@ -23,11 +23,13 @@ Template.index.events
     parsedSourceUrl = URI.parse(location.toString())
     sourceParameters = URI.parseQuery(parsedSourceUrl.query)
     tokenEmail = TokenEmails.findOne({wishpoolOwnerToken: share.wishpoolOwnerToken})?.email
+
     if sourceParameters.userEmail isnt "" or tokenEmail
       Feedbacks.insert(
         text: actualText
         parentUrl: Session.get("parentUrl")
         sourceUrl: location.toString()
+        email: sourceParameters.userEmail or tokenEmail
       )
       $('.widget-group').fadeOut(400, ->
         $('.success').fadeIn()
@@ -39,6 +41,12 @@ Template.index.events
         )
       , 2000)
     else
+      feedbackWithoutEmail = Feedbacks.insert(
+        text: actualText
+        parentUrl: Session.get("parentUrl")
+        sourceUrl: location.toString()
+      )
+      Session.set("feedbackWithoutEmail", feedbackWithoutEmail)
       $('.input-group').fadeOut(400, ->
         $('.ask-email').focus()
         $('.ask-email').fadeIn()
@@ -54,12 +62,7 @@ Template.index.events
       email: email
       wishpoolOwnerToken: share.wishpoolOwnerToken
     )
-    Feedbacks.insert(
-      text: actualText
-      parentUrl: Session.get("parentUrl")
-      sourceUrl: location.toString()
-      email: email
-    )
+    Feedbacks.update({_id: Session.get("feedbackWithoutEmail")}, {$set: {sourceUserEmail: email}})
     $('.ask-email').fadeOut(400, ->
       $('.success').fadeIn()
     )

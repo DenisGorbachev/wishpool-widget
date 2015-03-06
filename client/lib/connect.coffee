@@ -18,6 +18,7 @@ share.wishpoolOwnerToken = if Meteor.settings.public.isDebug then "token_J7H9PNS
 if not share.wishpoolOwnerToken
   share.wishpoolOwnerToken = "token_" + Random.id()
   store.set("wishpoolOwnerToken", share.wishpoolOwnerToken)
+
 share.tokenEmailSubscription = MasterConnection.subscribe("TokenEmails", share.wishpoolOwnerToken)
 
 
