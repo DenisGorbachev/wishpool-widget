@@ -18,8 +18,10 @@ Template.index.events
   'submit form.widget-form': grab encapsulate (event, template) ->
     actualText = template.$(".wishpool-input").val()
     defaultText = Widgets.findOne().label + " "
-    if actualText is defaultText
+    if actualText is defaultText or actualText is ""
       return # simple validation
+
+#    trying to find out if user left his email
     parsedSourceUrl = URI.parse(location.toString())
     sourceParameters = URI.parseQuery(parsedSourceUrl.query)
     tokenEmail = TokenEmails.findOne({wishpoolOwnerToken: share.wishpoolOwnerToken})?.email
@@ -41,12 +43,12 @@ Template.index.events
         )
       , 2000)
     else
-      feedbackWithoutEmail = Feedbacks.insert(
+      feedbackId = Feedbacks.insert(
         text: actualText
         parentUrl: Session.get("parentUrl")
         sourceUrl: location.toString()
+        sourceUserToken: share.wishpoolOwnerToken
       )
-      Session.set("feedbackWithoutEmail", feedbackWithoutEmail)
       $('.input-group').fadeOut(400, ->
         $('.ask-email').focus()
         $('.ask-email').fadeIn()
@@ -56,13 +58,12 @@ Template.index.events
     actualText = template.$(".wishpool-input").val()
     defaultText = Widgets.findOne().label + " "
     email = template.$(".email-input").val()
-    if email is "" or "@" not in email
+    if not email.match(share.emailLinkRegExp)
       return
     TokenEmails.insert(
       email: email
       wishpoolOwnerToken: share.wishpoolOwnerToken
     )
-    Feedbacks.update({_id: Session.get("feedbackWithoutEmail")}, {$set: {sourceUserEmail: email}})
     $('.ask-email').fadeOut(400, ->
       $('.success').fadeIn()
     )
