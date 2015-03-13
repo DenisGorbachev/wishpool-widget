@@ -40,6 +40,7 @@ Template.index.events
         $('.success').fadeOut(400, ->
           template.$(".wishpool-input").val(defaultText)
           $('.widget-group').fadeIn()
+          Session.set("changed", false)
         )
       , 2000)
     else
@@ -71,6 +72,7 @@ Template.index.events
       $('.success').fadeOut(400, ->
         template.$(".wishpool-input").val(defaultText)
         $('.widget-group').fadeIn()
+        Session.set("changed", false)
       )
     , 2000)
 
